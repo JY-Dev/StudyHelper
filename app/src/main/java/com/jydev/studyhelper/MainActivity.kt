@@ -29,25 +29,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val curHour = cal.get(Calendar.HOUR_OF_DAY)
-            val curMin = cal.get(Calendar.MINUTE)
-            TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hour, min ->
-                if(hour<=curHour&&min<=curMin) setAlarm(hour,min,1,tag01)
-                else setAlarm(hour,min,0,tag01)
-            },curHour,curMin,false).show()
-
+            permission {
+                val cal = Calendar.getInstance()
+                val curHour = cal.get(Calendar.HOUR_OF_DAY)
+                val curMin = cal.get(Calendar.MINUTE)
+                TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hour, min ->
+                    if(hour<=curHour&&min<=curMin) setAlarm(hour,min,1,tag01)
+                    else setAlarm(hour,min,0,tag01)
+                },curHour,curMin,false).show()
+            }
         }
         btn02.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val curHour = cal.get(Calendar.HOUR_OF_DAY)
-            val curMin = cal.get(Calendar.MINUTE)
-            TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hour, min ->
-                if(hour<=curHour&&min<=curMin) {
-                    setAlarm(hour,min,1,tag02)
-                }
-                else setAlarm(hour,min,0,tag02)
-            },curHour,curMin,false).show()
+            permission {
+                val cal = Calendar.getInstance()
+                val curHour = cal.get(Calendar.HOUR_OF_DAY)
+                val curMin = cal.get(Calendar.MINUTE)
+                TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hour, min ->
+                    if(hour<=curHour&&min<=curMin) {
+                        setAlarm(hour,min,1,tag02)
+                    }
+                    else setAlarm(hour,min,0,tag02)
+                },curHour,curMin,false).show()
+            }
         }
 
         btn03.setOnClickListener {
@@ -57,7 +60,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAlarm(hour:Int, minute:Int, interval : Int, tag:String){
-        permission {
             Toast.makeText(this,"알림이 등록되었습니다.",Toast.LENGTH_SHORT).show()
             val duration = getTime(hour,minute,interval)
             val workRequest =  when(tag){
@@ -69,7 +71,6 @@ class MainActivity : AppCompatActivity() {
                 cancelAllWorkByTag(tag)
                 enqueue(workRequest)
             }
-        }
     }
 
     private fun permission(func : () -> Unit){

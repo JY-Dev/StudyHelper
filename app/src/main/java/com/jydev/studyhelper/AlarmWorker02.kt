@@ -27,7 +27,6 @@ class AlarmWorker02(val context:Context, workerParameters: WorkerParameters) : W
 
         val handler = Handler(Looper.getMainLooper())
             handler.post {
-                Toast.makeText(context,"TEst",Toast.LENGTH_SHORT).show()
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_PLAY_SOUND)
                 audioManager.setStreamVolume(AudioManager.STREAM_RING,0,AudioManager.FLAG_PLAY_SOUND)
                 audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,0,AudioManager.FLAG_PLAY_SOUND)

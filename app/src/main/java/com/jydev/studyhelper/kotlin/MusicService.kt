@@ -1,4 +1,4 @@
-package com.jydev.studyhelper
+package com.jydev.studyhelper.kotlin
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,8 +14,6 @@ import android.view.View
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.jydev.studyhelper.AlarmBR
-import com.jydev.studyhelper.AlarmManager
 import com.jydev.studyhelper.R
 
 class MusicService : Service() {

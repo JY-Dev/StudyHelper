@@ -1,4 +1,4 @@
-package com.jydev.studyhelper
+package com.jydev.studyhelper.kotlin
 
 import android.content.Context
 import android.graphics.PixelFormat
@@ -7,6 +7,7 @@ import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
+import com.jydev.studyhelper.R
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -40,13 +41,18 @@ object AlarmManager {
     fun onDestroy() {
         if (mService == null) return
         timer.cancel()
-        windowManager.removeView(mView)
+        windowManager.removeView(
+            mView
+        )
         mediaPlayer.stop()
         mService?.stopSelf()
     }
 
     private fun playMusic(){
-        mediaPlayer = MediaPlayer.create(mService, R.raw.alarm) as MediaPlayer
+        mediaPlayer = MediaPlayer.create(
+            mService,
+            R.raw.alarm
+        ) as MediaPlayer
         timer = timer(period = 5000){
             mediaPlayer.start()
         }
@@ -54,7 +60,9 @@ object AlarmManager {
 
     fun addView(view: View){
         mView = view
-        windowManager.addView(view, buildLayoutParams(0,0))
+        windowManager.addView(view,
+            buildLayoutParams(0, 0)
+        )
     }
 
 

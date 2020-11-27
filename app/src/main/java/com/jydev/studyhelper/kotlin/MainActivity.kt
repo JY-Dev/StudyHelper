@@ -1,4 +1,4 @@
-package com.jydev.studyhelper
+package com.jydev.studyhelper.kotlin
 
 import android.Manifest
 import android.app.NotificationManager
@@ -15,9 +15,10 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.jydev.studyhelper.AlarmManager.getTime
-import com.jydev.studyhelper.AlarmManager.tag01
-import com.jydev.studyhelper.AlarmManager.tag02
+import com.jydev.studyhelper.R
+import com.jydev.studyhelper.kotlin.AlarmManager.getTime
+import com.jydev.studyhelper.kotlin.AlarmManager.tag01
+import com.jydev.studyhelper.kotlin.AlarmManager.tag02
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn03.setOnClickListener {
-            WorkManager.getInstance().cancelAllWork()
+            WorkManager.getInstance(this).cancelAllWork()
         }
 
     }
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 tag01 -> OneTimeWorkRequestBuilder<AlarmWorker01>().setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build()
                 else -> OneTimeWorkRequestBuilder<AlarmWorker02>().setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build()
             }
-            val workManager = WorkManager.getInstance()
+            val workManager = WorkManager.getInstance(this)
             workManager.apply {
                 cancelAllWorkByTag(tag)
                 enqueue(workRequest)

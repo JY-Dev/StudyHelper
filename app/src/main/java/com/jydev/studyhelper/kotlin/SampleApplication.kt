@@ -1,4 +1,4 @@
-package com.jydev.studyhelper
+package com.jydev.studyhelper.kotlin
 
 import android.app.Application
 

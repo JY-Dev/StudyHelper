@@ -1,7 +1,6 @@
-package com.jydev.studyhelper
+package com.jydev.studyhelper.kotlin
 
 import android.annotation.SuppressLint
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.media.AudioDeviceInfo
@@ -9,12 +8,12 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.jydev.studyhelper.kotlin.AlarmManager.tag01
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -48,7 +47,9 @@ class AlarmWorker01(val context: Context, workerParameters: WorkerParameters) :
 
         }
         val cal = Calendar.getInstance()
-        val workRequest = OneTimeWorkRequestBuilder<AlarmWorker02>().setInitialDelay(AlarmManager.getTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),1), TimeUnit.MILLISECONDS).build()
+        val duration = AlarmManager.getTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),1)
+        val workRequest = OneTimeWorkRequestBuilder<AlarmWorker02>().setInitialDelay(
+            duration, TimeUnit.MILLISECONDS).addTag(tag01).build()
         val workManager = WorkManager.getInstance()
         workManager.enqueue(workRequest)
         return Result.success()

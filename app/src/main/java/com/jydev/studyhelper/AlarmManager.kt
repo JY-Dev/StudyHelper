@@ -26,6 +26,7 @@ object AlarmManager {
         val nCal = Calendar.getInstance()
         nCal.set(Calendar.HOUR_OF_DAY,hour)
         nCal.set(Calendar.MINUTE,min)
+        nCal.set(Calendar.SECOND,0)
         if(cal.get(Calendar.DAY_OF_WEEK)==7) interval + 1
         nCal.add(Calendar.DATE,interval)
         return nCal.timeInMillis - cal.timeInMillis

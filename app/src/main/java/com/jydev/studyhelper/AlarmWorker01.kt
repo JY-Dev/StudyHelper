@@ -27,7 +27,7 @@ class AlarmWorker01(val context: Context, workerParameters: WorkerParameters) :
         val handler = Handler(Looper.getMainLooper())
         audioManager.getDevices(AudioManager.GET_DEVICES_ALL).forEach {
             when (it.type) {
-                AudioDeviceInfo.TYPE_WIRED_HEADSET, AudioDeviceInfo.TYPE_WIRED_HEADPHONES, AudioDeviceInfo.TYPE_USB_HEADSET -> {
+                AudioDeviceInfo.TYPE_WIRED_HEADSET, AudioDeviceInfo.TYPE_WIRED_HEADPHONES, AudioDeviceInfo.TYPE_USB_HEADSET , AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,AudioDeviceInfo.TYPE_BLUETOOTH_SCO -> {
                     handler.post {
                         audioManager.setStreamVolume(
                             AudioManager.STREAM_MUSIC,

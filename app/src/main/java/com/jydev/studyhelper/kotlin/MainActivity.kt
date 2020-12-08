@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn03.setOnClickListener {
-            WorkManager.getInstance(this).cancelAllWork()
+            WorkManager.getInstance().cancelAllWork()
         }
 
     }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 tag01 -> OneTimeWorkRequestBuilder<AlarmWorker01>().setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build()
                 else -> OneTimeWorkRequestBuilder<AlarmWorker02>().setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build()
             }
-            val workManager = WorkManager.getInstance(this)
+            val workManager = WorkManager.getInstance()
             workManager.apply {
                 cancelAllWorkByTag(tag)
                 enqueue(workRequest)

@@ -24,25 +24,25 @@ public class AlarmManagerJava {
     private Context mContext = null;
     String tag01 = "work01";
     String tag02 = "work02";
-    WindowManager windowManager = (WindowManager) new SampleApplication().getSystemService(Context.WINDOW_SERVICE);
+    WindowManager windowManager;
     public AlarmManagerJava(Context context){
         mContext = context;
+        windowManager = (WindowManager) mContext.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
     }
 
     public long getTime(int hour,int min, int interval){
-        int mInterval = interval;
         Calendar cal = Calendar.getInstance();
         Calendar nCal = Calendar.getInstance();
         nCal.set(Calendar.HOUR_OF_DAY,hour);
         nCal.set(Calendar.MINUTE,min);
         nCal.set(Calendar.SECOND,0);
-        if(cal.get(Calendar.DAY_OF_WEEK)== Calendar.SATURDAY) interval = interval +1;
         nCal.add(Calendar.DATE,interval);
         return nCal.getTimeInMillis() - cal.getTimeInMillis();
     }
 
     public void setAlarmService(MusicServiceJava sv){
         mService = sv;
+        playMusic();
     }
 
     public AlarmManagerJava getInstance(){
@@ -60,7 +60,7 @@ public class AlarmManagerJava {
             }
         };
         timer = new Timer();
-        timer.schedule(timerTask,5000);
+        timer.schedule(timerTask,0,5000);
     }
 
     public void addView(View view){

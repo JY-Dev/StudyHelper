@@ -14,7 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyHelper">
-        <activity android:name=".java.MainActivityJava"></activity>
+        <activity android:name=".java.MainActivityJava">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <receiver
             android:name=".kotlin.AlarmBR"
@@ -43,11 +49,7 @@
         <service android:name=".kotlin.MusicService" />
         <service android:name=".java.MusicServiceJava" />
         <activity android:name=".kotlin.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

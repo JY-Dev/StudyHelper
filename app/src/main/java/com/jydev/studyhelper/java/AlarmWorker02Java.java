@@ -50,7 +50,7 @@ public class AlarmWorker02Java extends Worker {
         AlarmManagerJava alarmManagerJava= new AlarmManagerJava(mContext).getInstance();
         long duration = alarmManagerJava.getTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),1);
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(AlarmWorker02.class).setInitialDelay(duration, TimeUnit.MILLISECONDS).addTag(alarmManagerJava.tag02).build();
-        WorkManager workManager = WorkManager.getInstance(mContext);
+        WorkManager workManager = WorkManager.getInstance();
         workManager.enqueue(workRequest);
         return Result.success();
     }

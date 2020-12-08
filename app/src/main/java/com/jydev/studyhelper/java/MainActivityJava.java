@@ -1,23 +1,19 @@
 package com.jydev.studyhelper.java;
 
+import android.Manifest;
+import android.app.TimePickerDialog;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import android.Manifest;
-import android.app.TimePickerDialog;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.jydev.studyhelper.R;
-import com.jydev.studyhelper.kotlin.AlarmManager;
-import com.jydev.studyhelper.kotlin.AlarmWorker01;
-import com.jydev.studyhelper.kotlin.AlarmWorker02;
-import com.jydev.studyhelper.java.PermissionListner;
+import com.jydev.studyhelper.kotlin.MainActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -58,7 +54,7 @@ public class MainActivityJava extends AppCompatActivity {
         });
 
         btn3.setOnClickListener(view -> {
-            WorkManager.getInstance(this).cancelAllWork();
+            WorkManager.getInstance().cancelAllWork();
         });
 
     }
@@ -67,7 +63,7 @@ public class MainActivityJava extends AppCompatActivity {
         Toast.makeText(this,"알람이 등록되었습니다.",Toast.LENGTH_SHORT).show();
         long duration = alarmManagerJava.getTime(hour,minute,interval);
         OneTimeWorkRequest workRequest = (tag.equals(alarmManagerJava.tag01)) ? new OneTimeWorkRequest.Builder(AlarmWorker01Java.class).setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build() : new OneTimeWorkRequest.Builder(AlarmWorker02Java.class).setInitialDelay(duration,TimeUnit.MILLISECONDS).addTag(tag).build();
-        WorkManager workManager = WorkManager.getInstance(this);
+        WorkManager workManager = WorkManager.getInstance();
         workManager.cancelAllWorkByTag(tag);
         workManager.enqueue(workRequest);
     }

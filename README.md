@@ -7,4 +7,7 @@
 
 ## 구현
 - 공통으로 Worker을 이용해 주기적으로 알람을 등록 AudioManager을 이용해 볼륨 조정
-- 이어폰 착용시 알람은 Service를 이용해 MediaPlayer 실행 및 알람 해제를 위한 Overlay View 구현 Notification을 등록해 이어폰 분리 
+- 이어폰 착용시 알람은 Service를 이용해 MediaPlayer 실행 
+  알람 해제를 위한 Overlay View 구현
+  Notification을 등록해 이어폰 분리 확인
+  AudioManager을 이용해 연결된 음향기기 확인

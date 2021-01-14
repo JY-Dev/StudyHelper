@@ -1,5 +1,9 @@
 ## 알람(Mute, 이어폰 연결시 들리는 알람)
-## Kotlin + Java + Worker
+
+## 기술 스택
+ - Kotlin 
+ - Java 
+ - Worker
 
 ## 설명
  - Worker를 사용 해보기위해 만든 프로젝트 입니다.
